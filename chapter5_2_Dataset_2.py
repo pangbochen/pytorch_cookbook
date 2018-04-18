@@ -29,7 +29,7 @@ class DogCat(data.Dataset):
     def __len__(self):
         return len(self.imgs)
 
-dataset = DogCat('./data/dogcat', transforms=transform)
+dataset = DogCat('./dataset/dogcat', transforms=transform)
 img, label = dataset[0]
 for img, label in dataset:
     print(img.size(), label)
@@ -45,14 +45,14 @@ class NewDogCat(DogCat):
 from torch.utils.data.dataloader import default_collate
 
 def my_collate_fn(batch):
-    '''(data, label)'''
-    # filter None data
+    '''(dataset, label)'''
+    # filter None dataset
     batch = list(filter(lambda x:x[0] is not None, batch))
     return default_collate(batch)
 
 from torch.utils.data import DataLoader
 
-dataset  = NewDogCat('./data/dogcat_wrong', transforms=transform)
+dataset  = NewDogCat('./dataset/dogcat_wrong', transforms=transform)
 
 dataloader = DataLoader(dataset, 2, collate_fn=my_collate_fn, num_workers=1)
 for batch_datas, batch_labels in dataloader:

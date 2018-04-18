@@ -9,7 +9,7 @@ from IPython import display
 torch.manual_seed(666)
 
 def get_fake_data(batch_size=8):
-    ''' random data y = x * 2 + 3 '''
+    ''' random dataset y = x * 2 + 3 '''
     x = torch.rand(batch_size, 1)*20
     y = x * 2 + (1 + torch.randn(batch_size, 1))*3
     return x, y
@@ -52,7 +52,7 @@ for ii in range(8000):
         plt.plot(x.numpy(), y.numpy()) # predicted
 
         x2, y2 = get_fake_data(batch_size=20)
-        plt.scatter(x2.numpy(), y2.numpy()) # true data
+        plt.scatter(x2.numpy(), y2.numpy()) # true dataset
 
         plt.xlim(0, 20)
         plt.ylim(0, 41)

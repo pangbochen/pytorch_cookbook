@@ -27,7 +27,7 @@ class DogCat(data.Dataset):
 
     def __len__(self):
         return len(self.imgs)
-dataset = DogCat('./data/dogcat/')
+dataset = DogCat('./dataset/dogcat/')
 img, label = dataset[0]   # dataset.__getitem__(0)
 for img, label in dataset:
     print(img.size(), img.float().mean(), label)

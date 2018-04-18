@@ -6,7 +6,7 @@ import torch
 
 show = ToPILImage() # change Tensor to Image
 
-# define the data precession part for the project
+# define the dataset precession part for the project
 transform = transforms.Compose([
     transforms.ToTensor(), # transform to tensor
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)), # normalization mean and std
@@ -14,7 +14,7 @@ transform = transforms.Compose([
 
 # for training dataset
 trainset = tv.datasets.CIFAR10(
-    root='C:/Users/pangbochen/Documents/data',
+    root='C:/Users/pangbochen/Documents/dataset',
     train=True,
     download=True,
     transform=transform
@@ -29,7 +29,7 @@ trainloader = torch.utils.data.DataLoader(
 
 # for testing dataset
 testset = tv.datasets.CIFAR10(
-    root='C:/Users/pangbochen/Documents/data',
+    root='C:/Users/pangbochen/Documents/dataset',
     train=False,
     download=True,
     transform=transform
@@ -44,10 +44,10 @@ testloader = torch.utils.data.DataLoader(
 
 classes = ('plane', 'car', 'brid', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
-# fetch a single data as the example
+# fetch a single dataset as the example
 (data, label) = trainset[100]
 
-# (data+1)/2
+# (dataset+1)/2
 
 # Data loader is iterable
 dataiter = iter(trainloader)
@@ -70,7 +70,7 @@ optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
 # for trainig part
 # follwing three parts
-# input data
+# input dataset
 # forward and backpropagation
 # update parameters
 for epoch in range(2):
@@ -78,7 +78,7 @@ for epoch in range(2):
     # enumerate, start from 0
     for i, data in enumerate(trainloader, 0):
 
-        # input data
+        # input dataset
         inputs, labels = data
         inputs, labels = Variable(inputs), Variable(labels)
 
